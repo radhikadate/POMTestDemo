@@ -38,8 +38,11 @@ WebDriver driver;
 	@FindBy(css="select[name='toDay']")
 	WebElement toDay;
 	
-	@FindBy(css="input[value='first']")
+	@FindBy(css="input[value='First']")
 	WebElement firstClass;
+	
+	@FindBy(css="input[name='findFlights']")
+	WebElement continueButton;
 	
 	public WebElement from() {
 		return from;
@@ -75,6 +78,10 @@ WebDriver driver;
 	
 	public WebElement firstClass() {
 		return firstClass;
+	}
+	
+	public WebElement continueButton() {
+		return continueButton;
 	}
 	
 
