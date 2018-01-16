@@ -57,11 +57,11 @@ public class BookingTests {
 	}
 
 	@Test(priority = 3)
-	public void bookFlight() {
+	public void bookFlight() throws IOException {
 		BookFlight bookFlight = new BookFlight(driver);
 		BookFlightTest bft = new BookFlightTest(driver, bookFlight);
 		bft.enterDetails();
-		Assert.assertTrue(driver.getPageSource().contains("Your itinerary has been booked!"));
+		Assert.assertTrue(driver.getPageSource().contains("itinerary has been booked!"));
 	}
 
 }
