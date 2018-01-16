@@ -1,8 +1,6 @@
 package tests;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -16,25 +14,23 @@ public class Base {
 
 	public WebDriver initializeBrowser() throws IOException {
 
-		Properties prop = new Properties();
-		FileInputStream fis = new FileInputStream(
-				"D:\\SubmissionProject\\POMTestDemo\\src\\test\\java\\resources\\data.properties");
-		prop.load(fis);
-
-		String browserName = prop.getProperty("browser");
+		
+		
+		String browserName = FileUtils.getProperty("browser");
 
 		if (browserName.equals("Chrome")) {
-			System.setProperty("webdriver.chrome.driver", "D:\\Abhyas\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", FileUtils.getFullFilePath("resources/chromedriver.exe"));
 			ChromeOptions chromeOptions = new ChromeOptions();
 			chromeOptions.addArguments("--start-maximized");
 			driver = new ChromeDriver(chromeOptions);
 		} else if (browserName.equals("Firefox")) {
+			System.setProperty("webdriver.gecko.driver", FileUtils.getFullFilePath("resources/geckodriver.exe"));
 			driver = new FirefoxDriver();
 
 		} else if (browserName.equals("IE")) {
 			driver = new InternetExplorerDriver();
 		}
-		
+
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		return driver;
 	}
